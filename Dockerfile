@@ -89,7 +89,7 @@ RUN apt-get update \
   && apt-get autoremove --yes \
   && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN certbot --apache --agree-tos --redirect --hsts --staple-ocsp --uir --email you@trajetgo.fr -d trajetgo.fr
+# RUN certbot --apache --agree-tos --redirect --hsts --staple-ocsp --uir --email you@trajetgo.fr -d trajetgo.fr
 RUN adduser --disabled-password --gecos "" renderer
 
 # Get Noto Emoji Regular font, despite it being deprecated by Google
