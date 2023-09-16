@@ -110,7 +110,7 @@ RUN npm install -g carto@1.2.0
 # Configure Apache
 RUN echo "LoadModule tile_module /usr/lib/apache2/modules/mod_tile.so" >> /etc/apache2/conf-available/mod_tile.conf \
   && echo "LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so" >> /etc/apache2/conf-available/mod_headers.conf \
-  && a2enconf mod_tile && a2enconf mod_headers
+  && a2enconf mod_tile && a2enconf mod_headers && a2enmod proxy proxy_http headers substitute
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 RUN ln -sf /dev/stdout /var/log/apache2/access.log \
   && ln -sf /dev/stderr /var/log/apache2/error.log
