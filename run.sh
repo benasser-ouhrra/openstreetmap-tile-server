@@ -63,8 +63,8 @@ if [ "$1" == "import" ]; then
     # Download Luxembourg as sample if no data is provided
     if [ ! -f /data/region.osm.pbf ] && [ -z "${DOWNLOAD_PBF:-}" ]; then
         echo "WARNING: No import file at /data/region.osm.pbf, so importing Luxembourg as example..."
-        DOWNLOAD_PBF="https://download.geofabrik.de/europe/luxembourg-latest.osm.pbf"
-        DOWNLOAD_POLY="https://download.geofabrik.de/europe/luxembourg.poly"
+        DOWNLOAD_PBF="https://download.geofabrik.de/europe/monaco-latest.osm.pbf"
+        DOWNLOAD_POLY="https://download.geofabrik.de/europe/monaco.poly"
     fi
 
     if [ -n "${DOWNLOAD_PBF:-}" ]; then
@@ -98,7 +98,7 @@ if [ "$1" == "import" ]; then
     # Import data
     sudo -u renderer osm2pgsql -d gis --create --slim -G --hstore  \
       --tag-transform-script /data/style/${NAME_LUA:-openstreetmap-carto.lua}  \
-      --number-processes ${THREADS:-4}  \
+      --number-processes ${THREADS:-24}  \
       -S /data/style/${NAME_STYLE:-openstreetmap-carto.style}  \
       /data/region.osm.pbf  \
       ${OSM2PGSQL_EXTRA_ARGS:-}  \
